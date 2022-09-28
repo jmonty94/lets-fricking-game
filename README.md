@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Pass JWT to Resolver with Context (Server-side)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this demo, you will verify if a token is valid and carry
 
-## Available Scripts
+## Instructions
 
-In the project directory, you can run:
+* Run `npm install` and `npm run seed` to set up the database.
 
-### `npm start`
+* Open [server.js](server/server.js) and explain the following:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  * We can add another option to our Apollo Server configuration called `context`, which is a lot like middleware in Express.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  * This will allow us to intercept any request to the server and check if there's a valid JWT before the request gets to the resolver.
 
-### `npm test`
+* Open [auth.js](server/utils/auth.js) and explain the `authMiddleware` function:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  * Whenever we make a request to our server, we will check if there's a token with the request and attempt to verify and decode it if there is.
 
-### `npm run build`
+  * We use the `return` statement to return the `req` object, either modified with user data or not modified at all, and the request will continue to go to its intended resolver function.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Open [resolvers.js](server/schemas/resolvers.js) and explain the following:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  * Any time we need to implement authentication on a query or mutation, we can add a third parameter called `context` to the resolver function.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  * The `context` object is whatever has been returned from our `authMiddleware` function, so it may or may not include a `user` property depending on the status of the JSON Web Token.
 
-### `npm run eject`
+  * If there is a `user` property, we can assume the user's token has been verified and the `user` property now holds data about the user that we stored in the token itself.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
