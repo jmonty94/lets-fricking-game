@@ -4,7 +4,8 @@ const profileSchema = require('./Profile')
 
 const teamSchema = new Schema({
     teamId: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        default: new ObjectId(),
     },
     name: {
         type: String,
@@ -28,7 +29,12 @@ const teamSchema = new Schema({
         type: String,
         required: true,
     },
-    squadMembers: [profileSchema],
+    squadMembers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 },
 {
     toJSON: {

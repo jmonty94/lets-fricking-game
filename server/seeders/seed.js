@@ -1,11 +1,13 @@
 const db = require('../config/connection');
-const { Profile } = require('../models');
-const profileSeeds = require('./profileSeeds.json');
+const { Profile, Team } = require('../models');
+const profiles = require('./profiles');
 
 db.once('open', async () => {
   try {
     await Profile.deleteMany({});
-    await Profile.create(profileSeeds);
+    await Team.deleteMany({})
+    await Profile.create(profiles);
+
 
     console.log('all done!');
     process.exit(0);
