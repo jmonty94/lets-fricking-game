@@ -23,6 +23,7 @@ const SkillsList = ({ skills, isLoggedInUser = false }) => {
       const { data } = await removeSkill({
         variables: { skill },
       });
+      console.log(data);
     } catch (err) {
       console.error(err);
     }
