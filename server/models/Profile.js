@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const ObjectId = require('mongodb').ObjectId
+const Team = require('./Team')
 const bcrypt = require('bcrypt');
 
 const profileSchema = new Schema({
@@ -19,12 +21,10 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
+  currentTeam: {
+    type: Schema.Types.ObjectId,
+    ref: 'Team',
+  },
 });
 
 // set up pre-save middleware to create password
