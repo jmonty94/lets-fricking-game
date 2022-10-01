@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import LogComponent from "./components/LogComponent";
 import ResponsiveAppBar from "./components/NavBar";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <ResponsiveAppBar />
-        <LogComponent />
+        <Home />
       </ThemeProvider>
     </div>
   );
