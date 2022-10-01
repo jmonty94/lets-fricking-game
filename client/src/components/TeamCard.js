@@ -7,6 +7,12 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
+import destiny from '../gameImages/destiny.jpeg';
+import madden from '../gameImages/madden.jpeg';
+import nba2k from '../gameImages/nba2k.jpeg';
+import warzone from '../gameImages/warzone.jpeg';
+import wow from '../gameImages/wow.jpeg';
+
 
 const TeamCard = (props) => {
 
@@ -14,13 +20,37 @@ const TeamCard = (props) => {
         
     }
 
+    let gameImg;
+    switch (props.data.game) {
+        case 'destiny':
+            gameImg = destiny;
+            break;
+        case 'madden':
+            gameImg = madden;
+            break;
+        case 'nba2k':
+            gameImg = nba2k;
+            break;
+        case 'warzone':
+            gameImg = warzone;
+            break;
+        case 'wow':
+            gameImg = wow;
+            break;
+    
+        default:
+            break;
+    }
+    
+
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height="140"
-                    image="img src"
+                    image={gameImg}
                     alt="game img"
                 />
                 <CardContent>
