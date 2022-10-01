@@ -1,4 +1,7 @@
+import {Route, Routes} from 'react-router-dom'
 
+import Profile from './pages/Profile'
+import Layout from "./components/Layout"
 
 import { createTheme, ThemeProvider } from "@mui/material";
 import LogComponent from "./components/LogComponent";
@@ -20,7 +23,13 @@ function App() {
         <div>
             <ThemeProvider theme={theme}>
                         <ResponsiveAppBar />
-                        <LogComponent />
+                        <Routes>
+                            <Route path="/"
+                            element={<Layout />} />
+                            <Route index element={<LogComponent /> } />
+                            <Route path="/users/:userId"
+                            element={<Profile />} />
+                        </Routes>
             </ThemeProvider>
         </div>
     );
