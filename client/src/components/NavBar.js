@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import { Image } from 'mui-image'
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Current Team', 'Logout'];
@@ -40,7 +41,7 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <SportsEsportsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <SportsEsportsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -56,7 +57,21 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LET'S FRICKIN GAME
+            <Image 
+              src='./dashboard-logo-lfg-white.jpg' 
+              height="40%"
+              width="40%"
+              fit='stretch'
+              duration={0}
+              easing='null'
+              showLoading={false}
+              errorIcon={true}
+              shift='null'
+              distance="100px"
+              shiftDuration={0}
+              bgColor="inherit"
+            />
+            {/* LET'S FRICKIN GAME */}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
