@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as React from "react";
-import { Signup, Login } from "../../pages/LoginSignup";
+import { Signup, Login } from "../pages/LoginSignup";
 import Grid from "@mui/material/Grid";
 
 import Switch from "@mui/material/Switch";
