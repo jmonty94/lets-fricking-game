@@ -1,9 +1,13 @@
-import LogComponent from "./components/LogComponent/LogComponent";
+import LogComponent from "./components/LogComponent";
+import Home from "./pages/Home";
 
 function App() {
+
+
   return (
     <div>
-      <LogComponent />
+      {/* <LogComponent /> */}
+      <Home/>
     </div>
   );
 }
