@@ -1,11 +1,15 @@
 import React from 'react';
 
-// Import the `useParams()` hook
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
 const Profile = () => {
-<h1>Profile</h1>  
+
+  return (
+    <main>
+        <div>
+            {/* Only should render upon Header button click / First Page Load */}
+        <h1>Your Profile!</h1>
+        </div>
+    </main>
+  );
 };
 
 export default Profile;

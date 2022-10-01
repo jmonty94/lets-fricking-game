@@ -28,7 +28,7 @@ const Signin = () => {
                 <Grid item xs={12}>
                     <h1>Sign In</h1>
                 </Grid>
-            
+
                 <Grid item xs={12}>
                     <TextField id="standard-basic" label="Username" variant="standard" onChange={() => {handleChange()}}/>    
                 </Grid>
@@ -47,7 +47,7 @@ const Signup = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-    
+
         setFormState({
           ...formState,
           [name]: value,
@@ -63,7 +63,7 @@ const Signup = () => {
                 <Grid item xs={12}>
                     <h1>Sign Up</h1>
                 </Grid>
-            
+
                 <Grid item xs={12}>
                     <TextField id="standard-basic" label="Username" variant="standard" onChange={() => {handleChange()}}/>    
                 </Grid>
