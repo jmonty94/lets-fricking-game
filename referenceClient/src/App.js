@@ -1,31 +1,30 @@
-import React from 'react';
+import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Header from './components/Header';
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import LoginComponent from "./components/";
+import Header from "./components/Header";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -38,10 +37,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-
       <Router>
         <div>
-
           {/* header */}
           <Header />
 
@@ -50,33 +47,15 @@ function App() {
               {/* landing page route */}
 
               {/* home page route */}
-              <Route 
-                path="/" 
-                element={<Home />}
-              />
+              <Route path="/" element={<Home />} />
 
-              {/* login page route */}
-              <Route 
-                path="/login" 
-                element={<Login />}
-              />
-
-              {/* signin page route */}
-              <Route 
-                path="/signup" 
-                element={<Signup />}
-              />
+              {/* login/sign up page route */}
+              <Route path="/login" element={<Login />} />
 
               {/* Profile page route */}
-              <Route 
-                path="/profiles/:profileId"
-                element={<Profile />}
-              />
-
+              <Route path="/profiles/:profileId" element={<Profile />} />
             </Routes>
           </div>
-
-
         </div>
       </Router>
     </ApolloProvider>
