@@ -25,11 +25,20 @@ function App() {
             <ThemeProvider theme={theme}>
                         <ResponsiveAppBar />
                         <Routes>
-                            <Route path="/"
-                            element={<Layout />} />
-                            <Route index element={<LogComponent /> } />
-                            <Route path="/users/:userId"
-                            element={<Profile />} />
+                            <Route 
+                              path="/"
+                              element={<Home />} 
+                            />
+
+                            <Route 
+                              path="/signinup" 
+                              element={<LogComponent /> } 
+                            />
+
+                            <Route 
+                              path="/profile"
+                              element={<Profile />} 
+                            />
                         </Routes>
             </ThemeProvider>
         </div>

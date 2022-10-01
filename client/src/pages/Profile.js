@@ -1,15 +1,37 @@
-import{ useParams} from 'react-router-dom'
+import { Button } from "@mui/material";
+import { useState } from "react";
 
 const Profile = () => {
-const {userId}=useParams()
-  return (
-    <main>
+    const [formState, setFormState] = useState({});
+    const handleTextChange = (event) => {
+        const { name, value } = event.target;
+    
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
+    
+    const getProfile = () => {
+        return {
+            username: '',
+            email: '',
+            xboxUsername: '',
+            psnUsername: null,
+            steamUsername: null,
+            nintendoUsername: null,
+            currentTeam: '',
+        }
+    }
+
+    const handleEdit = () => {
+
+    }
+
+    return (
         <div>
-            {/* Only should render upon Header button click / First Page Load */}
-        <h1>Your Profile!</h1>
         </div>
-    </main>
-  );
-};
+    );
+}
 
 export default Profile;
