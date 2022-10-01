@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
-import LogComponent from "./components/LogComponent/LogComponent";
+import LogComponent from "./components/LogComponent";
 import ResponsiveAppBar from "./components/NavBar";
+
 
 function App() {
   const theme = createTheme({

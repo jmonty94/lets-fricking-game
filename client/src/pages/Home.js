@@ -20,18 +20,10 @@ const Home = () => {
         }
         return data;
     }
-    const data = {
-        name: 'Jacks Squad',
-        squadSize: 5,
-        game: 'Warzone',
-        deviceType: 'Xbox',
-        skill: 'Noobs',
-        squadMembers: [{}, {}, {}]
-    }
 
     return (
         <div>
-            <TeamCard data={data}/>  
+            <TeamCard data={getTeamData()}/>  
         </div>
     );
 }
