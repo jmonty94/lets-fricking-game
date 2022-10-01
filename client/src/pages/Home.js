@@ -17,7 +17,7 @@ const Home = () => {
                 teamId: '7362976312863198',
                 name: 'Jacks Squad',
                 squadSize: 5,
-                game: 'Warzone',
+                game: 'warzone',
                 deviceType: 'Xbox',
                 skill: 'Noobs',
                 squadMembers: [{}, {}, {}]
@@ -26,7 +26,7 @@ const Home = () => {
                 teamId: '9962977382879238',
                 name: 'Moussas Squad',
                 squadSize: 2,
-                game: 'Fortnite',
+                game: 'madden',
                 deviceType: 'Cross Console',
                 skill: 'Pros',
                 squadMembers: [{},]
