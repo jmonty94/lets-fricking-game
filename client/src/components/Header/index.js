@@ -15,6 +15,9 @@ const Header = () => {
           <Link className="text-dark" to="/">
           <h2>Profile</h2>
           </Link>
+          <Link className="text-dark" to="/">
+          <h2>Sign In / Sign Up</h2>
+          </Link>
         </div>
       </header>
     );
