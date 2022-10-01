@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
+import Signinup from "./pages/Signinup";
 
 function App() {
   return (
     <div>
-      <Button>Hey</Button>
+      <Signinup />
     </div>
   );
 }
