@@ -1,4 +1,4 @@
-import LogComponent from "./components/LogComponent/LogComponent";
+import LogComponent from "./components/LogComponent";
 
 function App() {
   return (
