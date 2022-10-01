@@ -16,19 +16,21 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <Router>
-                <div><Header /></div>
                 <div>
-                    <Routes>
-                    <Route
-                path="/"
-                element={<Home />} 
-              />
-                    <Route
-                path="/"
-                element={<Profile />}
-              />
-              </Routes>
-              <Signinup />
+                    <Header />
+                    <div>
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={<Home />}
+                            />
+                            <Route
+                                path="/"
+                                element={<Profile />}
+                            />
+                        </Routes>
+                        <Signinup />
+                    </div>
                 </div>
             </Router>
         </ApolloProvider >
