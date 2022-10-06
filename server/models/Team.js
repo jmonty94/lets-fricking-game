@@ -3,10 +3,6 @@ const ObjectId = require('mongodb').ObjectId
 const profileSchema = require('./Profile')
 
 const teamSchema = new Schema({
-    teamId: {
-        type: Schema.Types.ObjectId,
-        default: new ObjectId(),
-    },
     name: {
         type: String,
         required: true,
@@ -28,6 +24,11 @@ const teamSchema = new Schema({
     skill:{
         type: String,
         required: true,
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     squadMembers: [
         {

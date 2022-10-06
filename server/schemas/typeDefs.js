@@ -3,10 +3,24 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Profile {
     _id: ID
-    name: String
+    username: String
     email: String
     password: String
-    skills: [String]!
+    xboxUsername: String
+    psnUsername: String
+    steamUsername: String
+    nintendoUsername: String
+    currentTeam: Team
+  }
+
+  type Team {
+    _id: ID
+    squadSize: Int
+    game: String
+    deviceType: String
+    skill: String
+    owner: Profile
+    squadMembers: [Profile]
   }
 
   type Auth {
@@ -15,19 +29,21 @@ const typeDefs = gql`
   }
 
   type Query {
-    profiles: [Profile]!
+    profiles: [Profile]
     profile(profileId: ID!): Profile
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
+    teams: [Team]
+    team(username: String): Team
     me: Profile
   }
 
   type Mutation {
-    addProfile(name: String!, email: String!, password: String!): Auth
+    addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
-    addSkill(profileId: ID!, skill: String!): Profile
-    removeProfile: Profile
-    removeSkill(skill: String!): Profile
+    editTags(profileId: ID!, xboxUsername: String, psnUsername: String, steamUsername: String, nintendoUsername: String): Profile
+    addTeam(squadSize: Int!, game: String!, deviceType: String!, skill: String, owner: Profile!): Team
+    deleteTeam(teamId: ID!, profileId: ID!): Team
+    joinTeam(teamId: ID!, profileId: ID!): Team
+    leaveTeam(teamId: ID!, profileId: ID!): Team
   }
 `;
 

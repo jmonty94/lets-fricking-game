@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+mongoose.set('debug', true);
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
