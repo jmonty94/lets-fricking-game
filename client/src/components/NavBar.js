@@ -15,6 +15,8 @@ import { Image } from 'mui-image';
 import navbarLogo from './../images/dashboard-logo-lfg-white.png';
 import { Link } from 'react-router-dom';
 
+import Auth from '../utils/auth';
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Current Team', 'Logout'];
 
@@ -92,12 +94,15 @@ const ResponsiveAppBar = () => {
                                       <Link to="">  <Typography textAlign="center">Current Team</Typography> </Link>
                                       {/* needs proper link */}
                                     </MenuItem>
-                                    <MenuItem onClick={() => console.log('do me next')}>
-                                    <Typography textAlign="center">Log Out</Typography> 
-                                      {/* needs proper link */}
-                                    </MenuItem>
-
-
+                                    {Auth.loggedIn() ? (
+                                      <MenuItem onClick={() => Auth.logout()}>
+                                        <Typography textAlign="center">Log Out</Typography> 
+                                      </MenuItem>
+                                    ) : (
+                                      <MenuItem>
+                                        <Link to="/signinup">  <Typography textAlign="center">Login/Signup</Typography> </Link>
+                                      </MenuItem>
+                                    )}
                         </Menu>
                     </Box>
                 </Toolbar>
