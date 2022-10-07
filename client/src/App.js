@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
+import CreateTeam from './pages/CreateTeam';
 import Profile from './pages/Profile'
 import Layout from "./components/Layout"
 
@@ -15,6 +16,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+
 
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -67,6 +69,16 @@ function App() {
 
                     <Route
                         path="/profile"
+                        element={<Profile />}
+                    />
+
+                    <Route
+                        path="/createTeam"
+                        element={<CreateTeam />}
+                    />
+
+                    <Route
+                        path="/myTeam"
                         element={<Profile />}
                     />
                 </Routes>
