@@ -15,6 +15,7 @@ const typeDefs = gql`
 
   type Team {
     _id: ID
+    name: String
     squadSize: Int
     game: String
     deviceType: String
@@ -40,7 +41,7 @@ const typeDefs = gql`
     addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     editTags(profileId: ID!, xboxUsername: String, psnUsername: String, steamUsername: String, nintendoUsername: String): Profile
-    addTeam(squadSize: Int!, game: String!, deviceType: String!, skill: String, owner: ID!): Team
+    addTeam(name: String!, squadSize: Int!, game: String!, deviceType: String!, skill: String!): Team
     deleteTeam(teamId: ID!, profileId: ID!): Team
     joinTeam(teamId: ID!, profileId: ID!): Team
     leaveTeam(teamId: ID!, profileId: ID!): Team

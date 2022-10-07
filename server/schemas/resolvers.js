@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Team } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,7 +7,6 @@ const resolvers = {
     profiles: async () => {
       return Profile.find();
     },
-
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
@@ -18,6 +17,9 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    teams: async () => {
+      return Team.find();
+    }
   },
 
   Mutation: {
@@ -42,6 +44,23 @@ const resolvers = {
 
       const token = signToken(profile);
       return { token, profile };
+    },
+    addTeam: async (parent, {name, squadSize, game, deviceType, skill}, context) => {
+      if (context.user) {
+        const owner = Profile.findOne({ _id: context.user._id });
+        const team = Team.create({
+          name,
+          squadSize,
+          game,
+          deviceType,
+          skill,
+          owner: owner,
+          squadMembers: [owner]
+        });
+
+        return team;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };

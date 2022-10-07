@@ -1,6 +1,4 @@
 const { Schema, model } = require('mongoose');
-const ObjectId = require('mongodb').ObjectId
-const profileSchema = require('./Profile')
 
 const teamSchema = new Schema({
     name: {
@@ -27,13 +25,13 @@ const teamSchema = new Schema({
     },
     owner: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Profile',
         required: true
     },
     squadMembers: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'Profile',
         },
     ],
 },
