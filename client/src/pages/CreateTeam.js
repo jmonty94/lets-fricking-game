@@ -2,9 +2,7 @@ import { useState } from "react";
 
 // mui
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
+import { Button, TextField, Grid, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { redirect } from "react-router-dom";
 
 
@@ -28,20 +26,20 @@ const CreateTeam = () => {
 
     const handleSubmit = async () => {
         // handle login submit with graphql
-            const token = Auth.loggedIn()?Auth.getToken(): null;
-            if (!user) {
-                return redirect("/login");
-            }
+            // const token = Auth.loggedIn()?Auth.getToken(): null;
+            // if (!user) {
+            //     return redirect("/login");
+            // }
 
-            try {
-                const data = await addTeam({
-                    var: {
-                        ...formState
-                    }
-                });
-            } catch(err) {
-                console.error(err);
-            }
+            // try {
+            //     const data = await addTeam({
+            //         var: {
+            //             ...formState
+            //         }
+            //     });
+            // } catch(err) {
+            //     console.error(err);
+            // }
     };
 
     return (
@@ -72,14 +70,13 @@ const CreateTeam = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={size}
-                        label="Size"
+                        value={formState.squadSize}
+                        label="Squad Size"
                         onChange={handleChange}
                     >
                         <MenuItem value={2}>2</MenuItem>
                         <MenuItem value={3}>3</MenuItem>
                         <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
@@ -89,7 +86,7 @@ const CreateTeam = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={game}
+                        value={formState.game}
                         label="Size"
                         onChange={handleChange}
                     >
@@ -107,48 +104,32 @@ const CreateTeam = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={device}
+                        value={formState.deviceType}
                         label="Size"
                         onChange={handleChange}
                     >
+                        <MenuItem value={"Cross-Console"}>Cross-Console</MenuItem>
                         <MenuItem value={"XBox"}>XBox</MenuItem>
                         <MenuItem value={"PSN"}>PSN</MenuItem>
-                        <MenuItem value={"STeam"}>STeam</MenuItem>
+                        <MenuItem value={"Steam"}>Steam</MenuItem>
                         <MenuItem value={"Nintendo"}>Nintendo</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid item xs={12}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Game Type</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={game}
-                        label="Size"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={"WOW"}>WOW</MenuItem>
-                        <MenuItem value={"NBA2K23"}>NBA2K23</MenuItem>
-                        <MenuItem value={"NBA2K23"}>NBA2K23</MenuItem>
-                        <MenuItem value={"NBA2K23"}>NBA2K23</MenuItem>
-                        <MenuItem value={"NBA2K23"}>NBA2K23</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid>
+        
             <Grid item xs={12}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Skill</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={skill}
+                        value={formState.skill}
                         label="Skill"
                         onChange={handleChange}
                     >
-                        <MenuItem value={"Noobs"}>Noobs</MenuItem>
-                        <MenuItem value={"Pros"}>Pros</MenuItem>
-                        <MenuItem value={"Pros+"}>Pros+</MenuItem>
+                        <MenuItem value={"Noobs"}>Noob</MenuItem>
+                        <MenuItem value={"Pros"}>Casual</MenuItem>
+                        <MenuItem value={"Pros+"}>Pro</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
