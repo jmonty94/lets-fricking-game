@@ -1,15 +1,5 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Tooltip, MenuItem} from '@mui/material';
 
 import { Image } from 'mui-image';
 import navbarLogo from './../images/dashboard-logo-lfg-white.png';
@@ -43,12 +33,12 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters  sx={{ justifyContent: 'space-between'}}>
-          <Image
+          <Link to='/'><Image
             src={navbarLogo}
             height="73.72px"
             width="285.94px"
             fit='contain'
-            duration={3000}
+            duration={900}
             easing=
             'cubic-bezier(0.7, 0, 0.6, 1)'
             showLoading=
@@ -57,13 +47,14 @@ const ResponsiveAppBar = () => {
             {true}
             shift={null}
             distance="100px"
-            shiftDuration={900}
+            shiftDuration={90}
             bgColor="inherit"
           />
+          </Link>
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                        <Tooltip title="Menu">
                             <IconButton onClick={handleOpenUserMenu} sx={{ display: { xs: { p: 0 }, md: { pl: 15 } } }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Profile"/>
                             </IconButton>
                         </Tooltip>
                         <Menu
