@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const ObjectId = require('mongodb').ObjectId;
 
 const bcrypt = require('bcrypt');
 

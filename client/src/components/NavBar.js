@@ -53,7 +53,7 @@ const ResponsiveAppBar = () => {
             {false}
             errorIcon=
             {true}
-            shift='null'
+            shift={null}
             distance="100px"
             shiftDuration={900}
             bgColor="inherit"
@@ -92,7 +92,7 @@ const ResponsiveAppBar = () => {
                                       <Link to="">  <Typography textAlign="center">Current Team</Typography> </Link>
                                       {/* needs proper link */}
                                     </MenuItem>
-                                    <MenuItem onClick = {{/*add logout function*\ */}}>
+                                    <MenuItem onClick={() => console.log('do me next')}>
                                     <Typography textAlign="center">Log Out</Typography> 
                                       {/* needs proper link */}
                                     </MenuItem>

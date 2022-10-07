@@ -6,9 +6,13 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { Button } from "@mui/material";
 
+import Auth from '../utils/auth';
+
+import { useMutation } from '@apollo/client';
+import { ADD_PROFILE, LOGIN } from "../utils/mutations";
+
 const Login = () => {
   const [formState, setFormState] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -22,8 +26,21 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = () => {
-    // handle login submit with graphql
+  const [login, {error, data}] = useMutation(LOGIN);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await login({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
+      });
+      Auth.login(data.login.token);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -41,11 +58,11 @@ const Login = () => {
       <Grid item xs={12}>
         <TextField
           id="standard-basic"
-          label="Username"
+          label="Email"
           variant="standard"
-          onChange={() => {
-            handleChange();
-          }}
+          name="email"
+          value={formState.email}
+          onChange={handleChange}
         />
       </Grid>
       <Grid item xs={12}>
@@ -53,13 +70,13 @@ const Login = () => {
           id="standard-basic"
           label="Password"
           variant="standard"
-          onChange={() => {
-            handleChange();
-          }}
+          name="password"
+          value={formState.password}
+          onChange={handleChange}
         />
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained" onClick={handleSubmit()}>
+        <Button variant="contained" onClick={handleSubmit}>
           Login
         </Button>
       </Grid>
@@ -75,6 +92,14 @@ const Signup = () => {
     password: "",
   });
 
+  const [addProfile, {error, data}] = useMutation(ADD_PROFILE, {
+    variables: {
+      username: formState.username,
+      email: formState.email,
+      password: formState.password,
+    }
+  });
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -84,8 +109,16 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = () => {
-    // handle login submit with graphql
+  
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const {data} = await addProfile({...formState});
+      Auth.login(data.addProfile.token);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -105,9 +138,19 @@ const Signup = () => {
           id="standard-basic"
           label="Username"
           variant="standard"
-          onChange={() => {
-            handleChange();
-          }}
+          name="username"
+          value={formState.username}
+          onChange={handleChange}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="standard-basic"
+          label="Email"
+          variant="standard"
+          name="email"
+          value={formState.email}
+          onChange={handleChange}
         />
       </Grid>
       <Grid item xs={12}>
@@ -115,13 +158,13 @@ const Signup = () => {
           id="standard-basic"
           label="Password"
           variant="standard"
-          onChange={() => {
-            handleChange();
-          }}
+          name="password"
+          value={formState.password}
+          onChange={handleChange}
         />
       </Grid>
       <Grid item xs={12}>
-        <Button variant="contained" onClick={handleSubmit()}>
+        <Button variant="contained" onClick={handleSubmit}>
           Sign up
         </Button>
       </Grid>
