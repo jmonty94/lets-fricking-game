@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useMutation } from '@apollo/client';
+import { EDIT_PROFILE } from '../utils/mutations';
 
 const Profile = () => {
     const [formState, setFormState] = useState({});
