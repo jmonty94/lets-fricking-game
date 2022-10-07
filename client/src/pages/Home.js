@@ -40,7 +40,7 @@ const Home = () => {
             <Grid container spacing={2}>
                 {getTeamsData().map(teamData => {
                     return (
-                        <Grid item xs="auto">
+                        <Grid item xs="auto" key={teamData.teamId}>
                             <TeamCard data={teamData}/> 
                         </Grid> 
                     );     

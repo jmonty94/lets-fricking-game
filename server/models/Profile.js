@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const ObjectId = require('mongodb').ObjectId;
 
 const bcrypt = require('bcrypt');
 
@@ -23,19 +22,15 @@ const profileSchema = new Schema({
   },
   xboxUsername: {
     type: String,
-    unique: true
   },
   psnUsername: {
     type: String,
-    unique: true
   },
   steamUsername: {
     type: String,
-    unique: true
   },
   nintendoUsername: {
     type: String,
-    unique: true
   },
   currentTeam: {
     type: Schema.Types.ObjectId,
