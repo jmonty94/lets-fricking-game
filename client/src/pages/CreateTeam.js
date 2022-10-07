@@ -8,38 +8,41 @@ import { redirect } from "react-router-dom";
 
 const CreateTeam = () => {
     const [formState, setFormState] = useState({
-        name: "",
-        squadSize: "",
+        name: '',
+        squadSize: '',
         game: "",
         deviceType: "",
         skill: ""
     });
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const key = event.target.name;
+        const value = event.target.value;
 
         setFormState({
             ...formState,
-            [name]: value,
+            [key]: value,
+
         });
     };
+    console.log(formState);
 
     const handleSubmit = async () => {
         // handle login submit with graphql
-            // const token = Auth.loggedIn()?Auth.getToken(): null;
-            // if (!user) {
-            //     return redirect("/login");
-            // }
+        // const token = Auth.loggedIn()?Auth.getToken(): null;
+        // if (!user) {
+        //     return redirect("/login");
+        // }
 
-            // try {
-            //     const data = await addTeam({
-            //         var: {
-            //             ...formState
-            //         }
-            //     });
-            // } catch(err) {
-            //     console.error(err);
-            // }
+        // try {
+        //     const data = await addTeam({
+        //         var: {
+        //             ...formState
+        //         }
+        //     });
+        // } catch(err) {
+        //     console.error(err);
+        // }
     };
 
     const style = {
@@ -49,7 +52,7 @@ const CreateTeam = () => {
 
     return (
         <Box
-            sx={{justifyContent: 'center', m: 'auto', textAlign:'center', width:{xs: '75%',sm: '60%', md: '50%', lg: '40%', xl: '30%' }}}
+            sx={{ justifyContent: 'center', m: 'auto', textAlign: 'center', width: { xs: '75%', sm: '60%', md: '50%', lg: '40%', xl: '30%' } }}
         >
             <Box sx={style}>
                 <Typography component='h1' variant="h4">Create Team</Typography>
@@ -57,13 +60,13 @@ const CreateTeam = () => {
 
             <Box sx={style} >
                 <TextField
-                sx={style}
-                    id="standard-basic"
-                    label="Team-name"
-                    variant="standard"
-                    onChange={() => {
-                        handleChange();
-                    }}
+                    sx={{ width: "100%" }}
+                    label="Team Name"
+                    type='text'
+                    name="name"
+                    // variant="standard"
+                    onChange={handleChange
+                    }
 
                 />
             </Box>
@@ -72,9 +75,9 @@ const CreateTeam = () => {
                     <InputLabel id="demo-simple-select-label">Team Size</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        name="squadSize"
                         value={formState.squadSize}
-                        label="Squad Size"
+                        label="Team Size"
                         onChange={handleChange}
                     >
                         <MenuItem value={2}>2</MenuItem>
@@ -88,9 +91,9 @@ const CreateTeam = () => {
                     <InputLabel id="demo-simple-select-label">Game Type</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        name="game"
                         value={formState.game}
-                        label="Size"
+                        label="Game Type"
                         onChange={handleChange}
                     >
                         <MenuItem value={"WOW"}>WOW</MenuItem>
@@ -106,7 +109,7 @@ const CreateTeam = () => {
                     <InputLabel id="demo-simple-select-label">Device Type</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        name="deviceType"
                         value={formState.deviceType}
                         label="Size"
                         onChange={handleChange}
@@ -119,13 +122,13 @@ const CreateTeam = () => {
                     </Select>
                 </FormControl>
             </Box>
-        
+
             <Box sx={style}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Skill</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        name="skill"
                         value={formState.skill}
                         label="Skill"
                         onChange={handleChange}
@@ -137,7 +140,7 @@ const CreateTeam = () => {
                 </FormControl>
             </Box>
             <Box sx={style}>
-                <Button variant="contained" onClick={()=> console.log('hit')}>
+                <Button variant="contained" onClick={() => console.log('hit')}>
                     Create Team
                 </Button>
             </Box>
