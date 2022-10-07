@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Header from './components/Header';
+import CreateTeam from './pages/CreateTeam';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -71,6 +72,12 @@ function App() {
               <Route 
                 path="/profiles/:profileId"
                 element={<Profile />}
+              />
+
+              {/* Create Team page route */}
+              <Route 
+                path="/createteam"
+                element={<CreateTeam />}
               />
 
             </Routes>
