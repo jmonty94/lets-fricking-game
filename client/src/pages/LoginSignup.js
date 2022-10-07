@@ -2,9 +2,7 @@ import { useState } from "react";
 
 // mui
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 
 import Auth from '../utils/auth';
 

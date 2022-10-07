@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import CreateTeam from './pages/CreateTeam';
 import Profile from './pages/Profile'
-import Layout from "./components/Layout"
 
 import { createTheme, ThemeProvider } from "@mui/material";
 import LogComponent from "./components/LogComponent";

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // mui
 import * as React from "react";
-import { Button, TextField, Grid, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Button, TextField, Grid, FormControl, InputLabel, Select, MenuItem, Box, Typography, createTheme } from "@mui/material";
 import { redirect } from "react-router-dom";
 
 
@@ -42,29 +42,32 @@ const CreateTeam = () => {
             // }
     };
 
-    return (
-        <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={3}
-        >
-            <Grid item xs={12}>
-                <h1>Create Team</h1>
-            </Grid>
+    const style = {
+        p: 1,
+        width: '100%',
+    };
 
-            <Grid item xs={12}>
+    return (
+        <Box
+            sx={{justifyContent: 'center', m: 'auto', textAlign:'center', width:{xs: '75%',sm: '60%', md: '50%', lg: '40%', xl: '30%' }}}
+        >
+            <Box sx={style}>
+                <Typography component='h1' variant="h4">Create Team</Typography>
+            </Box>
+
+            <Box sx={style} >
                 <TextField
+                sx={style}
                     id="standard-basic"
                     label="Team-name"
                     variant="standard"
                     onChange={() => {
                         handleChange();
                     }}
+
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </Box>
+            <Box sx={style}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Team Size</InputLabel>
                     <Select
@@ -79,8 +82,8 @@ const CreateTeam = () => {
                         <MenuItem value={4}>4</MenuItem>
                     </Select>
                 </FormControl>
-            </Grid>
-            <Grid item xs={12}>
+            </Box>
+            <Box sx={style}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Game Type</InputLabel>
                     <Select
@@ -97,8 +100,8 @@ const CreateTeam = () => {
                         <MenuItem value={"Madden"}>Madden</MenuItem>
                     </Select>
                 </FormControl>
-            </Grid>
-            <Grid item xs={12}>
+            </Box>
+            <Box sx={style}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Device Type</InputLabel>
                     <Select
@@ -115,9 +118,9 @@ const CreateTeam = () => {
                         <MenuItem value={"Nintendo"}>Nintendo</MenuItem>
                     </Select>
                 </FormControl>
-            </Grid>
+            </Box>
         
-            <Grid item xs={12}>
+            <Box sx={style}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Skill</InputLabel>
                     <Select
@@ -132,14 +135,14 @@ const CreateTeam = () => {
                         <MenuItem value={"Pros+"}>Pro</MenuItem>
                     </Select>
                 </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-                <Button variant="contained" onClick={handleSubmit()}>
+            </Box>
+            <Box sx={style}>
+                <Button variant="contained" onClick={()=> console.log('hit')}>
                     Create Team
                 </Button>
-            </Grid>
-            <Grid sx={{ bottom: "2px" }}>Don't have an account? Click below</Grid>
-        </Grid>
+            </Box>
+            <Box sx={{ bottom: "2px" }}>Don't have an account? Click below</Box>
+        </Box>
     );
 };
 
