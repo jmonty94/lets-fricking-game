@@ -23,3 +23,18 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const EDIT_PROFILE = gql `
+mutation EditTags($xboxUsername: String, $psnUsername: String, $steamUsername: String, $nintendoUsername: String) {
+    editTags(xboxUsername: $xboxUsername, psnUsername: $psnUsername, steamUsername: $steamUsername, nintendoUsername: $nintendoUsername) {
+      username
+      email
+      xboxUsername
+      psnUsername
+      steamUsername
+      nintendoUsername
+      currentTeam {
+      }
+    }
+  }
+`;
