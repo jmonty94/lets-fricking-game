@@ -41,6 +41,7 @@ const CreateTeam = () => {
         event.preventDefault();
         try {
             const {data} = await addProfile({...formState});
+            window.location.href = '/';
             return data;
         } catch (error) {
             console.error(error);

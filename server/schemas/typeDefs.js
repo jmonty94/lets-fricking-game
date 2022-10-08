@@ -33,7 +33,7 @@ const typeDefs = gql`
     profiles: [Profile]
     profile(profileId: ID!): Profile
     teams: [Team]
-    team(username: String): Team
+    myTeam: Team
     me: Profile
   }
 
@@ -43,7 +43,7 @@ const typeDefs = gql`
     editTags(xboxUsername: String, psnUsername: String, steamUsername: String, nintendoUsername: String): Profile
     addTeam(name: String!, squadSize: Int!, game: String!, deviceType: String!, skill: String!): Team
     deleteTeam(teamId: ID!, profileId: ID!): Team
-    joinTeam(teamId: ID!, profileId: ID!): Team
+    joinTeam(teamId: ID!): Team
     leaveTeam(teamId: ID!, profileId: ID!): Team
   }
 `;

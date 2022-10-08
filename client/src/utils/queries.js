@@ -54,4 +54,28 @@ export const QUERY_TEAMS = gql`
   }
 `;
 
+export const QUERY_MY_TEAM = gql`
+  query Query {
+    myTeam {
+      _id
+      name
+      squadSize
+      game
+      deviceType
+      skill
+      owner {
+        username
+      }
+      squadMembers {
+        username
+        email
+        xboxUsername
+        psnUsername
+        steamUsername
+        nintendoUsername
+      }
+    }
+  }
+`;
+
 

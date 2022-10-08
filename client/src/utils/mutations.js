@@ -58,3 +58,22 @@ export const ADD_TEAM = gql`
     }
   }
 `
+
+export const JOIN_TEAM = gql`
+  mutation Mutation($teamId: ID!) {
+    joinTeam(teamId: $teamId) {
+      _id
+      name
+      squadSize
+      game
+      deviceType
+      skill
+      owner {
+        username
+      }
+      squadMembers {
+        username
+      }
+    }
+  }
+`;
