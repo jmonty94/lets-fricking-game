@@ -12,6 +12,8 @@ import wow from '../gameImages/wow.jpeg';
 import {useMutation} from '@apollo/client';
 import { JOIN_TEAM } from '../utils/mutations';
 
+import auth from '../utils/auth';
+
 
 const TeamCard = (props) => {
     const [joinTeam, {error, data}] = useMutation(JOIN_TEAM, {
@@ -84,11 +86,22 @@ const TeamCard = (props) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary" onClick={handleJoin}>
-                    Join Team
-                </Button>
-            </CardActions>
+            {auth.loggedIn() ? (
+                <CardActions>
+                    {props.data.squadSize - props.data.squadMembers.length === 0 ? (
+                        <Button size="small" color="primary" disabled>
+                            Full Squad
+                        </Button>
+                    ) : (
+                        <Button size="small" color="primary" onClick={handleJoin}>
+                            Join Team
+                        </Button>
+                    )}
+                </CardActions>
+            ) : (
+                <></>
+            )}
+            
         </Card>
     );
 }
