@@ -18,19 +18,19 @@ const TeamCard = (props) => {
 
     let gameImg;
     switch (props.data.game) {
-        case 'destiny':
+        case 'Destiny':
             gameImg = destiny;
             break;
-        case 'madden':
+        case 'Madden':
             gameImg = madden;
             break;
-        case 'nba2k':
+        case 'NBA2K':
             gameImg = nba2k;
             break;
-        case 'warzone':
+        case 'Warzone':
             gameImg = warzone;
             break;
-        case 'wow':
+        case 'WOW':
             gameImg = wow;
             break;
     

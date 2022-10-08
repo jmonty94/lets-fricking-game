@@ -5,6 +5,9 @@ import * as React from "react";
 import { Button, TextField, Grid, FormControl, InputLabel, Select, MenuItem, Box, Typography, createTheme } from "@mui/material";
 import { redirect } from "react-router-dom";
 
+import {useMutation} from '@apollo/client';
+import { ADD_TEAM } from "../utils/mutations";
+
 
 const CreateTeam = () => {
     const [formState, setFormState] = useState({
@@ -22,27 +25,26 @@ const CreateTeam = () => {
         setFormState({
             ...formState,
             [key]: value,
-
         });
     };
-    console.log(formState);
 
-    const handleSubmit = async () => {
-        // handle login submit with graphql
-        // const token = Auth.loggedIn()?Auth.getToken(): null;
-        // if (!user) {
-        //     return redirect("/login");
-        // }
-
-        // try {
-        //     const data = await addTeam({
-        //         var: {
-        //             ...formState
-        //         }
-        //     });
-        // } catch(err) {
-        //     console.error(err);
-        // }
+    const [addProfile, {error, data}] = useMutation(ADD_TEAM, {
+        variables: {
+            name: formState.name,
+            squadSize: formState.squadSize,
+            game: formState.game,
+            deviceType: formState.deviceType,
+            skill: formState.skill,
+        }
+    });
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const {data} = await addProfile({...formState});
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const style = {
@@ -140,11 +142,10 @@ const CreateTeam = () => {
                 </FormControl>
             </Box>
             <Box sx={style}>
-                <Button variant="contained" onClick={() => console.log('hit')}>
+                <Button variant="contained" onClick={handleSubmit}>
                     Create Team
                 </Button>
             </Box>
-            <Box sx={{ bottom: "2px" }}>Don't have an account? Click below</Box>
         </Box>
     );
 };
