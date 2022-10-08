@@ -86,8 +86,9 @@ const resolvers = {
     },
     joinTeam: async (parent, {teamId}, context) => {
       if(context.user){
+        const user = await Profile.findOne({_id: context.user._id});
         const team = await Team.findOneAndUpdate({_id: teamId}, {
-          $push: {squadMembers: context.user._id}
+          $push: {squadMembers: user}
         });
 
         await Profile.findOneAndUpdate({_id: context.user._id}, {currentTeam: team});
