@@ -2,6 +2,8 @@ import { Button, Box, TableContainer, TableHead, TableBody, TableRow, TableCell,
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
 import Auth from './../utils/auth'
+import {useQuery} from '@apollo/client';
+import { QUERY_ME } from "../utils/queries";
 
 const Profile = () => {
     const [formState, setFormState] = useState({});
@@ -14,17 +16,7 @@ const Profile = () => {
         });
     };
 
-    const getProfile = () => {
-        return {
-            username: '',
-            email: '',
-            xboxUsername: '',
-            psnUsername: '',
-            steamUsername: '',
-            nintendoUsername: '',
-            currentTeam: '',
-        }
-    }
+    const {loading, data} = useQuery(QUERY_ME);
 
     const handleEdit = () => {
 
@@ -45,48 +37,47 @@ const Profile = () => {
     ]
 
     return (
-        <Box sx={{ display: 'block', justifyContent: 'center', textAlign: 'center', width:  '75%', m: 'auto' }}>
-            <Typography variant='h3' component='h1' sx={{mb:5}}>Welcome to your profile</Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{}}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Field</TableCell>
-                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Value</TableCell>
-                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Update</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                
-                            >
-                                <TableCell component='th' scope='row' sx={{textAlign: 'center'}}>
-                                    {row.name}
-                                </TableCell>
-                                <TableCell sx={{textAlign: 'center'}}>
-                                    {row.value}
-                                </TableCell>
-                                {row.name !== "Username" && row.name !== 'Email' 
-                            ? <Button sx={{ justifyContent: 'flex-end',}} onClick={console.log('hit')}><EditIcon></EditIcon></Button>
-                            : <></>
-                            }
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                    {/* <Typography variant="h4" component='h1'>Welcome to your Profile </Typography>
-            <Box sx={{m: 5, p: 2}}>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Current Team:</Typography>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Username: </Typography>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Xbox Username: </Typography>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Playstation Username:</Typography>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Steam Username:</Typography>
-                <Typography variant="h6" component='h3' sx={fieldStyling}>Nintendo Username:</Typography>
-            </Box> */}
-                </Table>
-            </TableContainer>
-        </Box>
+        <div>
+            {loading ? (
+                <h1>Loading</h1>
+            ) : (
+                <Box sx={{ display: 'block', justifyContent: 'center', textAlign: 'center', width:  '75%', m: 'auto' }}>
+                    <Typography variant='h3' component='h1' sx={{mb:5}}>Hey {data.me.username}</Typography>
+                    <TableContainer component={Paper}>
+                        <Table sx={{}}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell sx={{ width: '30%', textAlign: 'center' }}>Field</TableCell>
+                                    <TableCell sx={{ width: '30%', textAlign: 'center' }}>Value</TableCell>
+                                    <TableCell sx={{ width: '30%', textAlign: 'center' }}>Update</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow
+                                        key={row.name}
+                                        
+                                    >
+                                        <TableCell component='th' scope='row' sx={{textAlign: 'center'}}>
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell sx={{textAlign: 'center'}}>
+                                            {row.value}
+                                        </TableCell>
+                                        {row.name !== "Username" && row.name !== 'Email' 
+                                    ? <Button sx={{ justifyContent: 'flex-end',}} onClick={console.log(data)}><EditIcon></EditIcon></Button>
+                                    : <></>
+                                    }
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            )}
+        </div>
+        
+        
 
     );
 }

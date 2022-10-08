@@ -76,7 +76,7 @@ const ResponsiveAppBar = () => {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem>
-                    <Link to="/profiles">  <Typography textAlign="center">Profile</Typography> </Link>
+                    <Link to="/profile">  <Typography textAlign="center">Profile</Typography> </Link>
                   </MenuItem>
                   <MenuItem>
                     <Link to="/currentTeam">  <Typography textAlign="center">Current Team</Typography> </Link>
