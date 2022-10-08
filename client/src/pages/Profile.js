@@ -26,21 +26,27 @@ const Profile = () => {
         return { name, value }
     }
 
-    const rows = [
-        createTable("Username", "test"),
-        createTable("Email", "email"),
-        createTable("Xbox Username", "Xbox Username"),
-        createTable("Playstation Username", "Playstation Username"),
-        createTable("Steam Username", "Steam Username"),
-        createTable("Nintendo Username", "Nintendo Username"),
-        createTable("Current Team", "Current Team"),
-    ]
+    let rows = [];
+    
+    const createRows = () => {
+        return rows = [
+            createTable("Username", data.me.username || "N/A"),
+            createTable("Email", data.me.email || "N/A"),
+            createTable("Xbox Username", data.me.xboxUsername || "N/A"),
+            createTable("Playstation Username", data.me.psnUsername || "N/A"),
+            createTable("Steam Username", data.me.steamUsername || "N/A"),
+            createTable("Nintendo Username", data.me.nintendoUsername || "N/A"),
+            createTable("Current Team", data.me.currentTeam || "N/A"),
+        ]
+    }
+    
 
     return (
         <div>
             {loading ? (
                 <h1>Loading</h1>
-            ) : (
+            ) : 
+            (   
                 <Box sx={{ display: 'block', justifyContent: 'center', textAlign: 'center', width:  '75%', m: 'auto' }}>
                     <Typography variant='h3' component='h1' sx={{mb:5}}>Hey {data.me.username}</Typography>
                     <TableContainer component={Paper}>
@@ -53,10 +59,10 @@ const Profile = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {createRows().map((row) => {
+                                    return (
                                     <TableRow
                                         key={row.name}
-                                        
                                     >
                                         <TableCell component='th' scope='row' sx={{textAlign: 'center'}}>
                                             {row.name}
@@ -69,7 +75,7 @@ const Profile = () => {
                                     : <></>
                                     }
                                     </TableRow>
-                                ))}
+                                )})}
                             </TableBody>
                         </Table>
                     </TableContainer>
