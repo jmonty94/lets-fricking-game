@@ -46,33 +46,32 @@ const Profile = () => {
 
     return (
         <Box sx={{ display: 'block', justifyContent: 'center', textAlign: 'center', width:  '75%', m: 'auto' }}>
-            <Typography variant='h3' component='h1'>Welcome to your profile</Typography>
-            <TableContainer component={Paper} m='auto'>
-                <Table sx={{ m: 10}}>
+            <Typography variant='h3' component='h1' sx={{mb:5}}>Welcome to your profile</Typography>
+            <TableContainer component={Paper}>
+                <Table sx={{}}>
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ width: '50%' }}>Field</TableCell>
-                            <TableCell>Value</TableCell>
+                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Field</TableCell>
+                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Value</TableCell>
+                            <TableCell sx={{ width: '30%', textAlign: 'center' }}>Update</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
                             <TableRow
                                 key={row.name}
+                                
                             >
-                                <TableCell component='th' scope='row'>
+                                <TableCell component='th' scope='row' sx={{textAlign: 'center'}}>
                                     {row.name}
                                 </TableCell>
-                                <TableCell >
+                                <TableCell sx={{textAlign: 'center'}}>
                                     {row.value}
                                 </TableCell>
                                 {row.name !== "Username" && row.name !== 'Email' 
-                                ? <Button onClick={console.log('hit')}><EditIcon></EditIcon></Button>
-                                : <></>
-                                }
-                                
-                                
-                                
+                            ? <Button sx={{ justifyContent: 'flex-end',}} onClick={console.log('hit')}><EditIcon></EditIcon></Button>
+                            : <></>
+                            }
                             </TableRow>
                         ))}
                     </TableBody>
