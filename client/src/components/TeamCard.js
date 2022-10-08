@@ -9,11 +9,26 @@ import nba2k from '../gameImages/nba2k.jpeg';
 import warzone from '../gameImages/warzone.jpeg';
 import wow from '../gameImages/wow.jpeg';
 
+import {useMutation} from '@apollo/client';
+import { JOIN_TEAM } from '../utils/mutations';
+
 
 const TeamCard = (props) => {
+    const [joinTeam, {error, data}] = useMutation(JOIN_TEAM, {
+        variables: {
+            teamId: props.data._id,
+        }
+    });
 
-    const handleJoin = () => {
-        
+    const handleJoin = async () => {
+        try {
+            console.log('hit');
+            console.log(props.data._id)
+            const {data} = await joinTeam({teamId: props.data._id});
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     let gameImg;
@@ -70,7 +85,7 @@ const TeamCard = (props) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary" onClick={() => {handleJoin()}}>
+                <Button size="small" color="primary" onClick={handleJoin}>
                     Join Team
                 </Button>
             </CardActions>

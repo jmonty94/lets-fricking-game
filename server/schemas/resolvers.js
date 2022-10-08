@@ -19,6 +19,14 @@ const resolvers = {
     },
     teams: async () => {
       return Team.find();
+    },
+    myTeam: async (parent, args, context) => {
+      if(context.user){
+        const loggedInUser = await Profile.findOne({_id: context.user._id})
+        const myTeam = await Team.findOne({_id: loggedInUser.currentTeam._id});
+        return myTeam;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     }
   },
 
@@ -72,6 +80,18 @@ const resolvers = {
         });
 
         return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    joinTeam: async (parent, {teamId}, context) => {
+      if(context.user){
+        const team = await Team.findOneAndUpdate({_id: teamId}, {
+          $push: {squadMembers: context.user._id}
+        });
+
+        await Profile.findOneAndUpdate({_id: context.user._id}, {currentTeam: team});
+
+        return team;
       }
       throw new AuthenticationError('You need to be logged in!');
     }

@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import CreateTeam from './pages/CreateTeam';
 import Profile from './pages/Profile'
+import CurrentTeam from './pages/CurrentTeam';
 
 import { createTheme, ThemeProvider } from "@mui/material";
 import LogComponent from "./components/LogComponent";
@@ -15,6 +16,7 @@ import {
     createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+
 
 
 const httpLink = createHttpLink({
@@ -77,8 +79,8 @@ function App() {
                     />
 
                     <Route
-                        path="/myTeam"
-                        element={<Profile />}
+                        path="/currentTeam"
+                        element={<CurrentTeam />}
                     />
                 </Routes>
             </ThemeProvider>
