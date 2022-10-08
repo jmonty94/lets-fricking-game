@@ -21,11 +21,19 @@ export const QUERY_SINGLE_PROFILE = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
+  query Query {
     me {
       _id
-      name
-      skills
+      username
+      email
+      xboxUsername
+      psnUsername
+      steamUsername
+      nintendoUsername
+      currentTeam {
+        name
+        game
+      }
     }
   }
 `;
