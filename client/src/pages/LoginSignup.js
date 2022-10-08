@@ -24,7 +24,10 @@ const Login = () => {
     });
   };
 
-  const [login, {error, data}] = useMutation(LOGIN);
+  const [login, {error, data}] = useMutation(LOGIN, {
+    email: formState.email,
+    password: formState.password,
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
