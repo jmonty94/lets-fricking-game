@@ -56,16 +56,21 @@ const resolvers = {
     },
     addTeam: async (parent, {name, squadSize, game, deviceType, skill}, context) => {
       if (context.user) {
-        const owner = await Profile.findOne({ _id: context.user._id });
+        // const owner = await Profile.findById(context.user._id);
+        // console.log(owner, '--------------------------------60')
+        console.log(context.user)
+
         const team = await Team.create({
           name,
           squadSize,
           game,
           deviceType,
           skill,
-          owner: owner,
-          squadMembers: [owner]
+          owner: context.user,
+          squadMembers: [context.user]
         });
+
+        await Profile.findOneAndUpdate({_id: context.user._id}, {currentTeam: team});
 
         return team;
       }
@@ -86,9 +91,9 @@ const resolvers = {
     },
     joinTeam: async (parent, {teamId}, context) => {
       if(context.user){
-        const user = await Profile.findOne({_id: context.user._id});
+        const profile = await Profile.findOne({_id: context.user._id});
         const team = await Team.findOneAndUpdate({_id: teamId}, {
-          $push: {squadMembers: user}
+          $push: {squadMembers: profile}
         });
 
         await Profile.findOneAndUpdate({_id: context.user._id}, {currentTeam: team});
