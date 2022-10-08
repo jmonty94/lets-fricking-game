@@ -142,7 +142,7 @@ Some ideas we have for future features we want to add are:
 - [Jack Youkstetter](https://github.com/JackYouk)
 - [Daniel Holloway](https://github.com/VendettiStudios)
 - [Michael Harris](https://github.com/Snufalufakis)
-- [Mousa Dia](https://github.com/TheAnswer07)
+- [Moussa Dia](https://github.com/TheAnswer07)
 
 ## Acknowledgments
 ​
