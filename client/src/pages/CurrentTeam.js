@@ -5,11 +5,22 @@ import { QUERY_ME } from '../utils/queries';
 
 const CurrentTeam = () => {
     const {loading, data} = useQuery(QUERY_MY_TEAM);
-    console.log(data);
-
+    
     return (
         <div>
-            <h1>Hey</h1>
+            {loading ? (
+                <h1>Loading</h1>
+            ) : (
+                <div>
+                    <h1>{data.myTeam.name}</h1>
+                    <h1>{data.myTeam.game}</h1>
+                    <h1>{data.myTeam.deviceType}</h1>
+                    
+                    {/* may be null for owner */}
+                    <h1>{data.myTeam.owner.username}</h1> 
+                    <h1></h1>
+                </div>
+            )}
         </div>
     );
 }
