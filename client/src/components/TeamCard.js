@@ -93,9 +93,12 @@ const TeamCard = (props) => {
                             Full Squad
                         </Button>
                     ) : (
-                        <Button size="small" color="primary" onClick={handleJoin}>
-                            Join Team
-                        </Button>
+                        <>
+                            {/* if already on team  */}
+                            <Button size="small" color="primary" onClick={handleJoin}>
+                                Join Team
+                            </Button>
+                        </>
                     )}
                 </CardActions>
             ) : (
