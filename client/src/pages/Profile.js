@@ -36,7 +36,7 @@ const Profile = () => {
             createTable("Playstation Username", data.me.psnUsername || "N/A"),
             createTable("Steam Username", data.me.steamUsername || "N/A"),
             createTable("Nintendo Username", data.me.nintendoUsername || "N/A"),
-            createTable("Current Team", data.me.currentTeam || "N/A"),
+            createTable("Current Team", data.me.currentTeam.name || "N/A"),
         ]
     }
     

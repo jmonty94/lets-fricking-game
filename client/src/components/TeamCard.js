@@ -95,9 +95,16 @@ const TeamCard = (props) => {
                     ) : (
                         <>
                             {/* if already on team  */}
-                            <Button size="small" color="primary" onClick={handleJoin}>
-                                Join Team
-                            </Button>
+                            {auth.getProfile()?.currentTeam?._id === props.data._id ? (
+                                <Button size="small" color="primary" disabled>
+                                    Already on this team
+                                </Button>
+                            ) : (
+                                <Button size="small" color="primary" onClick={handleJoin}>
+                                    Join Team
+                                </Button>
+                            )}
+                            
                         </>
                     )}
                 </CardActions>
