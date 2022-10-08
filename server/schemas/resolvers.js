@@ -47,8 +47,8 @@ const resolvers = {
     },
     addTeam: async (parent, {name, squadSize, game, deviceType, skill}, context) => {
       if (context.user) {
-        const owner = Profile.findOne({ _id: context.user._id });
-        const team = Team.create({
+        const owner = await Profile.findOne({ _id: context.user._id });
+        const team = await Team.create({
           name,
           squadSize,
           game,
@@ -62,6 +62,19 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    editTags: async (parent, {xboxUsername, psnUsername, steamUsername, nintendoUsername}, context) => {
+      if(context.user){
+        const updatedUser = await Profile.findOneAndUpdate({_id: context.user._id}, {
+          xboxUsername,
+          psnUsername,
+          steamUsername,
+          nintendoUsername,
+        });
+
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
 };
 
